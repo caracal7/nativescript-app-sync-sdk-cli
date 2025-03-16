@@ -59,3 +59,10 @@ gulp.task("link", function(done) {
 gulp.task("link-bin", function(done) {
     runSequence("link-sdk", "link-cli-bin", done);
 });
+
+gulp.task("watch-cli", function() {
+    gulp.watch([path.join(__dirname, "..")+"/cli/script/**/*.ts"], function(event) {
+        console.log("Changed", event.path);
+        runSequence("build-cli");
+    });
+});
